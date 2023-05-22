@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+ <html lang="en">
+
+ <head>
+
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{%block title%} {%endblock%}</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+ {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'food/css/style.css' %}">
+
+<style>
+    .navbar.navbar-light.bg-light {
+      background-color: rgb(138, 90, 62) !important;
+    }
+   
+  </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml">
+                <li class="nav-item active">
+                    <a class="nav-link {% if active_link  == 'index' %}active{% endif%}" href="{% url 'index' %}">Home </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-target="#navbarDropdownMenu" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"id="navbarDropdown">
+                        <!--<a class="dropdown-item{% if active_link == 'ethiopianfood'%}active{% endif%} " href="{% url 'food:ethiopian foods' %}">Ethiopian Foods</a>
+                        <a class="dropdown-item {% if active_link == 'indianfood'%}active{% endif%}" href="{% url 'food:indian foods' %}">Indian foods</a>-->
+                        <a class="dropdown-item  {% if active_link == 'burger'%}active{% endif%}" href="{% url 'food:burgers' %}">Burgers</a>
+                        <a class="dropdown-item {% if active_link == 'pizza'%}active{% endif%}" href="{% url 'food:pizzas' %}">pizzas</a>
+                       <!-- <a class="dropdown-item {% if active_link == 'drink' %}active{% endif%}" href="{% url 'food:drinks' %}">Drinks</a>-->
+                    </div>
+                </li>
+                </ul>
+                <ul class ="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    
+                    <li class="nav-item mt-2"> 
+                        <h6 class="text-light pt-2 pr-4">
+                        Welcome {{ user.username }}</h6></li>
+                    {% endif  %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if active_link == 'order' %}active{% endif%}" href="{% url 'food:order' %}" ><img src="{% static 'food/img/cart.png' %}" /><span id="cart"></span></a>
+                  </li>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'food:logout' %}"><img class="bg-light ml-2 rounded-circle" src="{% static 'food/img/user.png' %}"><br>Logout</a>
+                  </li>
+                  {% else %}
+                
+                  <li class="nav-item">
+                    <a class="nav-link{% if active_link == 'login' %}active{% endif%}"  href="{% url 'food:login' %}"> <img class="bg-light ml-2 rounded-circle" src="{% static 'food/img/user.png' %}"><br>Login</a>
+                  </li>
+                  {% endif %}
+                </ul>
+                
+                
+            
+        </div>
+    </nav>
+        
+    <div>
+        {%block content%} 
+        
+        {%endblock%}
+    </div>
+   
+  <script src="{% static 'food/js/main.js' %}"></script>  
+  
+  
+
+ </body>
+
+</html>

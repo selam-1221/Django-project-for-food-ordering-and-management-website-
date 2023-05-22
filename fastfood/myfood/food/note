@@ -1,0 +1,9 @@
+#python manage.py migrate
+#python manage.py shell
+#from food.models import pizza
+#pizza1 =pizza(name="pizza1",priceM=5.50,priceL=7.90,pImage='pizza.jpeg')
+#ctrl+z
+#selina123
+
+# python manage.py make migrations
+#python manage.py migrate
